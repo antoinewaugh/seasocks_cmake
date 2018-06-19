@@ -41,9 +41,9 @@ public:
         for (auto *con : _connections) con->send(msg);
     }
 
-    void send(std::string key, std::string value) {
+    void display(std::string value) {
         _server->execute([&] {
-            send(key + " : " + value);
+            send(value);
         });
     }
 
@@ -62,8 +62,8 @@ int main(int /*argc*/, const char* /*argv*/[]) {
         std::thread t([&] {
             for (;;) {
                 sleep(1);
-                auto v1 = rand() % 100;
-                handler->send("mykey "+ std::to_string(v1), "value");
+                std::string v1 = std::to_string(rand() % 100);
+                handler->display(v1);
             }
         });
 
