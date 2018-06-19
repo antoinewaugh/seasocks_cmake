@@ -42,7 +42,7 @@ public:
     }
 
     void display(std::string value) {
-        _server->execute([&] {
+        _server->execute([value, this] {
             send(value);
         });
     }
